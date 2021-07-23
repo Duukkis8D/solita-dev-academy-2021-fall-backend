@@ -1,0 +1,11 @@
+{
+  "name": "solita-dev-academy-2021-fall-backend",
+  "version": "1.0.0",
+  "description": "backend for solita dev academy 2021 fall pre-assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tuukka Virtanen",
+  "license": "ISC"
+}
