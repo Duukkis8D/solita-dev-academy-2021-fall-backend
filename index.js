@@ -1,19 +1,10 @@
-require( 'dotenv' ).config()
-const express = require( 'express' )
-const app = express()
-const Vaccination = require( './models/vaccination' )
+const app = require( './app' ) // the actual Express app
+const http = require( 'http' )
+const config = require( './utils/config' )
+const logger = require( './utils/logger' )
 
-app.get( '/', ( req, res ) => {
-	res.send( '<h1>Hello World!</h1>' )
-} )
+const server = http.createServer( app )
 
-app.get( '/api/vaccinations', ( req, res ) => {
-	Vaccination.find( { vaccinationDate: '2021-03-30T02:18:36.678468Z' } ).then( vaccinations => {
-		res.json( vaccinations )
-	} )
-} )
-
-const PORT = process.env.PORT || 3001
-app.listen( PORT, () => {
-	console.log( `Server running on port ${PORT}` )
+server.listen( config.PORT, () => {
+	logger.info( `server running on port ${config.PORT}` )
 } )
