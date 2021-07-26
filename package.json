@@ -1,21 +1,22 @@
 {
-  "name": "solita-dev-academy-2021-fall-backend",
-  "version": "1.0.0",
-  "description": "backend for solita dev academy 2021 fall pre-assignment",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Tuukka Virtanen",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "mongoose": "^5.13.3"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.12"
-  }
+	"name": "solita-dev-academy-2021-fall-backend",
+	"version": "1.0.0",
+	"description": "backend for solita dev academy 2021 fall pre-assignment",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"dev": "nodemon index.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Tuukka Virtanen",
+	"license": "ISC",
+	"dependencies": {
+		"dotenv": "^10.0.0",
+		"express": "^4.17.1",
+		"mongoose": "^5.13.3"
+	},
+	"devDependencies": {
+		"eslint": "^7.31.0",
+		"nodemon": "^2.0.12"
+	}
 }
