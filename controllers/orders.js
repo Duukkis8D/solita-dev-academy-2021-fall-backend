@@ -1,9 +1,8 @@
 const ordersRouter = require( 'express' ).Router()
 const Order = require( '../models/order' )
 
-ordersRouter.get( '/', ( req, res ) => {
-	// Amount of vaccinations done
-	/*
+ordersRouter.get( '/amountOfVaccinationsDone/:dateAndTime', ( req, res ) => {
+	// Add functionality for handling date and time ranges.
 	Order
 		.aggregate(
 			[
@@ -26,9 +25,13 @@ ordersRouter.get( '/', ( req, res ) => {
 					numberOfVaccinationsDone: 1
 				} }
 			] )
-	*/
+		.then( result => {
+			res.json( result )
+		} )
+} )
 
-	// Total number of vaccines
+ordersRouter.get( '/amountOfVaccines/:dateAndTime', ( req, res ) => {
+	// Add functionality for handling date and time ranges.
 	Order
 		.aggregate(
 			[

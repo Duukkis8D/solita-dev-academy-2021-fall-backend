@@ -1,6 +1,7 @@
 const config = require( './utils/config' )
 const express = require( 'express' )
 const app = express()
+const cors = require( 'cors' )
 const morgan = require( 'morgan' )
 const ordersRouter = require( './controllers/orders' )
 const vaccinationsRouter = require( './controllers/vaccinations' )
@@ -17,6 +18,7 @@ mongoose.connect( config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopolog
 		logger.error( 'error connection to MongoDB:', error.message )
 	} )
 
+app.use( cors() )
 app.use( morgan( 'tiny' ) )
 app.use( '/api/orders', ordersRouter )
 app.use( '/api/vaccinations', vaccinationsRouter )
