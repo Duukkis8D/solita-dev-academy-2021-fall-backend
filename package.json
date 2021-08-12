@@ -6,7 +6,11 @@
 	"scripts": {
 		"start": "node index.js",
 		"dev": "nodemon index.js",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build:ui": "rm -rf build && cd ../solita-dev-academy-2021-fall-frontend && npm run build --prod && cp -r build ../solita-dev-academy-2021-fall-backend",
+    	"deploy": "git push heroku master",
+    	"deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
+    	"logs:prod": "heroku logs --tail"
 	},
 	"author": "Tuukka Virtanen",
 	"license": "ISC",

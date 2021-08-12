@@ -18,6 +18,7 @@ mongoose.connect( config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopolog
 		logger.error( 'error connection to MongoDB:', error.message )
 	} )
 
+app.use( express.static( 'build' ) )
 app.use( cors() )
 app.use( morgan( 'tiny' ) )
 app.use( '/api/orders', ordersRouter )
