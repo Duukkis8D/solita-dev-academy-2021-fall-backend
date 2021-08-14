@@ -1,6 +1,50 @@
 const vaccinationsRouter = require( 'express' ).Router()
 const Vaccination = require( '../models/vaccination' )
 
+vaccinationsRouter.get( '/firstVaccinationDate', ( req, res ) => {
+	Vaccination
+		.aggregate(
+			[
+				{ $project: {
+					'vaccinationDate': 1,
+					'date': { $dateFromString: { 'dateString': '$vaccinationDate' } }
+				} },
+				{ $group: {
+					_id: null,
+					firstVaccination: { $min: '$date' }
+				} },
+				{ $project: {
+					_id: 0,
+					firstVaccination: 1
+				} }
+			] )
+		.then( result => {
+			res.json( result )
+		} )
+} )
+
+vaccinationsRouter.get( '/latestVaccinationDate', ( req, res ) => {
+	Vaccination
+		.aggregate(
+			[
+				{ $project: {
+					'vaccinationDate': 1,
+					'date': { $dateFromString: { 'dateString': '$vaccinationDate' } }
+				} },
+				{ $group: {
+					_id: null,
+					latestVaccination: { $max: '$date' }
+				} },
+				{ $project: {
+					_id: 0,
+					latestVaccination: 1
+				} }
+			] )
+		.then( result => {
+			res.json( result )
+		} )
+} )
+
 vaccinationsRouter.get( '/amountOfVaccinationsDone/:dateAndTime', ( req, res ) => {
 	const dateAndTime = new Date( req.params.dateAndTime )
 
@@ -22,8 +66,8 @@ vaccinationsRouter.get( '/amountOfVaccinationsDone/:dateAndTime', ( req, res ) =
 					count: 1
 				} }
 			] )
-		.then( vaccinations => {
-			res.json( vaccinations )
+		.then( result => {
+			res.json( result )
 		} )
 } )
 
