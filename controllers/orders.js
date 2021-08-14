@@ -45,6 +45,32 @@ ordersRouter.get( '/latestOrderDate', ( req, res ) => {
 		} )
 } )
 
+ordersRouter.get( '/amountOfOrders/:dateAndTime', ( req, res ) => {
+	const dateAndTime = new Date( req.params.dateAndTime )
+
+	Order
+		.aggregate(
+			[
+				{ $project: {
+					'date': { $dateFromString: { 'dateString': '$arrived' } }
+				} },
+				{ $match: {
+					'date': { $lte: dateAndTime }
+				} },
+				{ $group: {
+					_id: null,
+					count: { $sum: 1 }
+				} },
+				{ $project: {
+					_id: 0,
+					count: 1
+				} }
+			] )
+		.then( result => {
+			res.json( result )
+		} )
+} )
+
 ordersRouter.get( '/amountOfVaccines/:dateAndTime', ( req, res ) => {
 	const dateAndTime = new Date( req.params.dateAndTime )
 
