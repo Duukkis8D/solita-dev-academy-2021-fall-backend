@@ -67,7 +67,8 @@ vaccinationsRouter.get( '/amountOfVaccinationsDone/:dateAndTime', ( req, res ) =
 				} }
 			] )
 		.then( result => {
-			res.json( result )
+			if( result.length > 0 ) res.json( result )
+			else res.json( [ { count: 0 } ] )
 		} )
 } )
 

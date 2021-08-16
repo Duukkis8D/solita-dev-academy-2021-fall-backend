@@ -67,7 +67,8 @@ ordersRouter.get( '/amountOfOrders/:dateAndTime', ( req, res ) => {
 				} }
 			] )
 		.then( result => {
-			res.json( result )
+			if( result.length > 0 ) res.json( result )
+			else res.json( [ { count: 0 } ] )
 		} )
 } )
 
@@ -94,7 +95,8 @@ ordersRouter.get( '/amountOfVaccines/:dateAndTime', ( req, res ) => {
 				} }
 			] )
 		.then( result => {
-			res.json( result )
+			if( result.length > 0 ) res.json( result )
+			else res.json( [ { totalNumberOfVaccines: 0 } ] )
 		} )
 } )
 
